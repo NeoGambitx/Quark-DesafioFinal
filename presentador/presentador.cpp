@@ -1,0 +1,14 @@
+//TRAER DATOS DEL MODELO - 
+//INICIALIZAR LA TIENDA, VENDEDOR Y PRENDAS
+
+//logica DE COTIZACION
+//TRAER HISTORIAL
+
+//INVOCAR A LA VISTA E IR MOSTRANDO DATOS EN PANTALLA
+
+class Presentador{
+
+    public:
+        void mostrarMenu();
+
+};
