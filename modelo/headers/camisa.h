@@ -1,3 +1,4 @@
+#pragma once
 #include "prenda.h"
 
 class Camisa: public Prenda{
@@ -5,6 +6,6 @@ class Camisa: public Prenda{
         char tipo; //'l' = Manga Larga / 'c' Manga corta
         char cuello; // 'm' = Mao / 'c' = Común
     public:
-        Camisa(char tipo, char cuello, char calidad, int stock, float precio): Prenda(calidad, stock, precio){};
-
+        Camisa(char calidad, int stock, float precio, char tipo, char cuello);
+        float getPrecioUnitario(); //Cada subClase tiene su propia implementación (Camisa, Pantalon)
 };

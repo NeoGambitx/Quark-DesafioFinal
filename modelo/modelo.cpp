@@ -7,6 +7,16 @@
 #include <iostream>
 #include "headers/camisa.h"
 #include "headers/pantalon.h"
+#include <string>
+#include "headers/prenda.h"
+
+class Tienda{
+    private:
+       std::string nombre;
+        std::string direccion;
+        Prenda* listadoPrendas;
+    public:
+};
 
 //SIM
 main(){
