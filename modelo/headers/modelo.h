@@ -17,6 +17,7 @@
 #include "prenda.h"
 #include "tienda.h"
 #include "vendedor.h"
+#include <string>
 /* #include <vector> */
 
 /* struct historial

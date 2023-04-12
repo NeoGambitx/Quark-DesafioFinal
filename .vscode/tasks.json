@@ -8,6 +8,8 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${workspaceFolder}\\modelo\\implementaciones\\*.cpp",
+                "${workspaceFolder}\\presentador\\*.cpp",
+                "${workspaceFolder}\\vista\\*.cpp",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],

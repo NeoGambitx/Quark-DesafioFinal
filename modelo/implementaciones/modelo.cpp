@@ -1,21 +1,11 @@
 /* #include "../headers/modelo.h" */
 
 #include <iostream>
-#include "../headers/camisa.h"
-#include "../headers/pantalon.h"
-#include "../headers/prenda.h"
-#include "../headers/tienda.h"
-#include "../headers/vendedor.h"
+#include "../headers/modelo.h"
 #include <string>
 
-class Modelo
-{
-public:
-    Tienda tienda;
-    Vendedor vendedor;
-    Modelo(std::string nombreTienda, std::string direccion, std::string nombreV, std::string apellidoV, int codigo):vendedor(nombreV, apellidoV, codigo),tienda(nombreTienda, direccion)
+Modelo::Modelo(std::string nombreTienda, std::string direccion, std::string nombreV, std::string apellidoV, int codigo):vendedor(nombreV, apellidoV, codigo),tienda(nombreTienda, direccion)
     {
-        std::cout << "Constructor del MODEL";
         // Inicializamos la tienda
         // Sus Prendas:
         // Camisas cortas cuello MAO - Calidad Com. y Premium
@@ -65,19 +55,14 @@ public:
     std::vector<historial> Modelo::getHistorial(){
         return this->hist;
     } */
-};
 
+/* int main(){
 
-    //PRUEBAS
+    
+    Modelo *m = new Modelo("Glam Palace", "Galileo 2441 - Recoleta - Bs As Argentina", "Carolina", "Pryzbylewski", 645);
 
-    int main()
-    {
-        Modelo *m = new Modelo("Glam Palace", "Galileo 2441 - Recoleta - Bs As Argentina", "Carolina", "Pryzbylewski", 645);
-
-        std::cout << m->tienda.getDireccion();
-        std::cout << m->vendedor.getNombre();
-        Prenda* p = m->tienda.getPrenda(1);
-        std::cout << p->getStock();
-
-        return 0;
-    }
+    std::cout << m->tienda.getDireccion();
+    std::cout << m->vendedor.getNombre();
+    Prenda* p = m->tienda.getPrenda(1);
+    return 0;
+} */
