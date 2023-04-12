@@ -36,9 +36,9 @@ class Modelo{
         /* std::vector<historial *> hist; */
         
     public:
-        Tienda* tienda;
-        Vendedor* vendedor;
-        Modelo();
+        Tienda tienda;
+        Vendedor vendedor;
+        Modelo(std::string nombreTienda, std::string direccion, std::string nombreV, std::string apellidoV, int codigo);
         /* void guardarHistorial(historial* nuevoH);
         std::vector<historial> getHistorial(); */
 };
