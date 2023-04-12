@@ -55,14 +55,3 @@ Modelo::Modelo(std::string nombreTienda, std::string direccion, std::string nomb
     std::vector<historial> Modelo::getHistorial(){
         return this->hist;
     } */
-
-/* int main(){
-
-    
-    Modelo *m = new Modelo("Glam Palace", "Galileo 2441 - Recoleta - Bs As Argentina", "Carolina", "Pryzbylewski", 645);
-
-    std::cout << m->tienda.getDireccion();
-    std::cout << m->vendedor.getNombre();
-    Prenda* p = m->tienda.getPrenda(1);
-    return 0;
-} */
