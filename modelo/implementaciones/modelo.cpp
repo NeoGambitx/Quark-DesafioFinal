@@ -47,16 +47,11 @@ Modelo::Modelo(std::string nombreTienda, std::string direccion, std::string nomb
         tienda.addPantalon(p4);
     }
 
-    void Modelo::guardarHistorial(Vendedor v, Camisa* c, int cant, float precioFinal, int id){
-        //obtenemos fecha y hora
-        std::time_t t = std::time(nullptr);
-        std::tm* now = std::localtime(&t);
-        char buffer[128];
-        strftime(buffer, sizeof(buffer), "%m-%d-%Y %X", now);
-        
+    void Modelo::guardarHistorial(Vendedor v, Camisa* c, int cant, float precioFinal, int id, std::string fechayHora){
+
         historial h;
         h.numIdentificacion = id;
-        h.FechayHora = buffer;
+        h.FechayHora = fechayHora;
         h.codigoV = v.getCodigoVendedor();
         h.prendaCotizada = c->getCaracteristicas();
         h.precioUnitario = c->getPrecioUnitario();
@@ -66,16 +61,11 @@ Modelo::Modelo(std::string nombreTienda, std::string direccion, std::string nomb
     }
 
 
-    void Modelo::guardarHistorial(Vendedor v, Pantalon* p, int cant, float precioFinal, int id){
-        //obtenemos fecha y hora
-        std::time_t t = std::time(nullptr);
-        std::tm* now = std::localtime(&t);
-        char buffer[128];
-        strftime(buffer, sizeof(buffer), "%m-%d-%Y %X", now);
-        
+    void Modelo::guardarHistorial(Vendedor v, Pantalon* p, int cant, float precioFinal, int id,  std::string fechayHora){
+
         historial h;
         h.numIdentificacion = id;
-        h.FechayHora = buffer;
+        h.FechayHora = fechayHora;
         h.codigoV = v.getCodigoVendedor();
         h.prendaCotizada = p->getCaracteristicas();
         h.precioUnitario = p->getPrecioUnitario();

@@ -5,6 +5,9 @@
 #include "../modelo/headers/vendedor.h"
 #include "../modelo/headers/historial.h"
 #include <vector>
+#include <stdlib.h>
+#include <Windows.h>
+
 
 class Vista{
 
@@ -32,6 +35,7 @@ class Vista{
         void cotizadorPaso3Calidad();
         void cotizadorPaso4Precio();
         void cotizadorPaso5Cantidad(int stock);
-        void cotizadorResultado(Camisa* c, Vendedor v, int id, int cant, float precioFinal);
+        void cotizadorResultado(Camisa* c, Vendedor v, int id, int cant, float precioFinal, std::string fecha);/*  */
+        void cotizadorResultado(Pantalon* p, Vendedor v, int id, int cant, float precioFinal, std::string fecha);/*  */
         void cotizadorError();
 }; 

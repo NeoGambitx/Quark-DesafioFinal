@@ -1,13 +1,3 @@
-//SOLO DEBE TENER METODOS PARA MOSTRAR INFORMACION - MENU - ETC
-
-//METODOS PARA LA ENTRADA DEL USUARIO
-//FORMATEAR HISTORIAL
-// PANTALLA PRINCIPAL CON VARIOS PARAMETROS - NOMBRE TIENDA - VENDEDOR
-// RESTO DE PANTALLAS CON PARAMETROS - SIEMPRE INVOCADAS DESDE EL PRESENTADOR
-// PARAMETROS TAMBIEN PASADOS POR PRESENTADOR
-
-// INVOCA AL PRESENTADOR CUANDO EL USUARIO INGRESA UNA OPCION.
-
 #include "vista.h"
 #include <iostream>
 #include <limits>
@@ -27,7 +17,7 @@ void Vista::printMenuPrincipal(Tienda* t, Vendedor* v){
     std::cout << "3) Salir" << std::endl;
     std::cout << "" <<std::endl;
     std::cout << "" <<std::endl;
-    std::cout << "Ingrese una opción:  ";
+    std::cout << "Ingrese una opcion:  ";
     
 }
 
@@ -55,14 +45,13 @@ bool Vista::validar(int x){
 }
 
 void Vista::printError(){
-    std::cout << "Valor Ingresado Inválido - Vuelva a ingresar un número...";
+    std::cout << "Valor Ingresado Invalido - Vuelva a ingresar un numero...";
 }
 
 int Vista::getInput(){
     int x;
     bool esValido;
     do{
-
         std::cin >> x;
         if(validar(x)){
             return x;
@@ -71,19 +60,19 @@ int Vista::getInput(){
             esValido = false;
             printError();
         }
-
         std::cin.clear();
         std::cin.ignore( std::numeric_limits<int>::max(), '\n' );
 
     }while(!esValido);
+
+    
     
     return x; //No usado, Para que no joda el compilador
 }
 
 void Vista::getAnyInput(){
 
-        int x;
-        std::cin >> x;
+        std::cin.get();
         std::cin.clear();
         std::cin.ignore( std::numeric_limits<int>::max(), '\n' );
 
@@ -97,6 +86,8 @@ int Vista::getCantidad(){
         std::cin >> x;
         if(x>0){
             return x;
+
+            
         }
         else{
             esValido = false;
@@ -108,6 +99,8 @@ int Vista::getCantidad(){
 
     }while(!esValido);
     
+    
+
     return x; //No usado, Para que no apareza la advertencia del compilador
 }
 
@@ -119,6 +112,7 @@ float Vista::getInputPrecio(){
         std::cin >> x;
         if(x>0){
             return x;
+            
         }
         else{
             esValido = false;
@@ -129,14 +123,17 @@ float Vista::getInputPrecio(){
         std::cin.ignore( std::numeric_limits<int>::max(), '\n' );
 
     }while(!esValido);
+
+    
     
     return x; //No usado, Para que no apareza la advertencia del compilador
 }
 
 void Vista::mostrarHistorial(std::vector<historial> his){
+    limpiarPantalla();
     std::cout << "COTIZADOR EXPRESS - HISTORIAL DE COTIZACIONES" << std::endl;
-
-    for(int x=0; his.size(); x++){
+    linea();
+    for(int x=0; x < his.size(); x++){
         std::cout << "Numero de identificacion: " << his[x].numIdentificacion << std::endl;
         std::cout << "Fecha y hora de la cotizacion: "<< his[x].FechayHora << std::endl;
         std::cout << "Codigo del Vendedor: " << his[x].codigoV << std::endl;
@@ -160,7 +157,20 @@ void Vista::linea(){
 }
 
 void Vista::limpiarPantalla(){
-   /*  system("cls"); */
+    COORD topLeft  = { 0, 0 };
+    HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO screen;
+    DWORD written;
+
+    GetConsoleScreenBufferInfo(console, &screen);
+    FillConsoleOutputCharacterA(
+        console, ' ', screen.dwSize.X * screen.dwSize.Y, topLeft, &written
+    );
+    FillConsoleOutputAttribute(
+        console, FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE,
+        screen.dwSize.X * screen.dwSize.Y, topLeft, &written
+    );
+    SetConsoleCursorPosition(console, topLeft);
 }
 
 void Vista::encabezadoCotizacion(){
@@ -168,6 +178,7 @@ void Vista::encabezadoCotizacion(){
 }
 
 void Vista::cotizadorPaso1(){
+    limpiarPantalla();
     encabezadoCotizacion();
     print3msg();
     std::cout << "PASO 1: Selecciona la prenda a cotizar" << std::endl;
@@ -177,30 +188,34 @@ void Vista::cotizadorPaso1(){
 }
 
 void Vista::cotizadorPaso2Camisa(){
+    limpiarPantalla();
     encabezadoCotizacion();
     print3msg();
-    std::cout << "PASO 2.A: La camisa a cotizar, ¿es manga corta?" << std::endl;
+    std::cout << "PASO 2.A: La camisa a cotizar, es manga corta?" << std::endl;
     siNo();
     linea();
 }
 
 void Vista::cotizadorPaso2bCamisa(){
+    limpiarPantalla();
     encabezadoCotizacion();
     print3msg();
-    std::cout << "PASO 2.B: La camisa a cotizar, ¿es cuello Mao?" << std::endl;
+    std::cout << "PASO 2.B: La camisa a cotizar, es cuello Mao?" << std::endl;
     siNo();
     linea();
 }
 
 void Vista::cotizadorPaso2Pantalon(){
+    limpiarPantalla();
     encabezadoCotizacion();
     print3msg();
-    std::cout << "PASO 2: El pantalon a cotizar, ¿es chupin?" << std::endl;
+    std::cout << "PASO 2: El pantalon a cotizar, es chupin?" << std::endl;
     siNo();
     linea();
 }
 
 void Vista::cotizadorPaso3Calidad(){
+    limpiarPantalla();
     encabezadoCotizacion();
     print3msg();
     std::cout << "PASO 3: Seleccione la calidad de la prenda" << std::endl;
@@ -210,6 +225,7 @@ void Vista::cotizadorPaso3Calidad(){
 }
 
 void Vista::cotizadorPaso4Precio(){
+    limpiarPantalla();
     encabezadoCotizacion();
     print3msg();
     std::cout << "PASO 4: Ingrese el precio unitario de la prenda a cotizar" << std::endl;
@@ -217,6 +233,7 @@ void Vista::cotizadorPaso4Precio(){
 }
 
 void Vista::cotizadorPaso5Cantidad(int stock){
+    limpiarPantalla();
     encabezadoCotizacion();
     print3msg();
     std::cout << "INFORMACION" << std::endl;
@@ -225,20 +242,40 @@ void Vista::cotizadorPaso5Cantidad(int stock){
     std::cout << "PASO 5: Ingrese la cantidad de unidades a cotizar:" << std::endl;
 }
 
-void Vista::cotizadorResultado(Camisa* c, Vendedor v, int id, int cant, float precioFinal){
+void Vista::cotizadorResultado(Camisa* c, Vendedor v, int id, int cant, float precioFinal, std::string fecha){
+    limpiarPantalla();
     encabezadoCotizacion();
+    linea();
     std::cout << "Numero de identificacion: " << id << std::endl;
-    std::cout << "Fecha y hora de la cotizacion: " << std::endl;
+    std::cout << "Fecha y hora de la cotizacion: " << fecha << std::endl;
     std::cout << "Codigo del Vendedor: " << v.getCodigoVendedor() << std::endl;
-    std::cout << "Prenda cotizada: Camisa con cuello " << c->getCuello() << " de calidad " << c->getCalidad() << std::endl;
+    std::cout << "Prenda cotizada: " << c->getCaracteristicas() << std::endl;
     std::cout << "Precio Unitario: " << c->getPrecioUnitario() << std::endl;
     std::cout << "Cantidad de prendas cotizadas: " << cant << std::endl;
     std::cout << "Precio Final: " << precioFinal << std::endl;
+    linea();
+    std::cout << "Presione cualquier tecla para continuar" << std::endl;
+}
+
+void Vista::cotizadorResultado(Pantalon* p, Vendedor v, int id, int cant, float precioFinal, std::string fecha){
+    limpiarPantalla();
+    encabezadoCotizacion();
+    linea();
+    std::cout << "Numero de identificacion: " << id << std::endl;
+    std::cout << "Fecha y hora de la cotizacion: " << fecha << std::endl;
+    std::cout << "Codigo del Vendedor: " << v.getCodigoVendedor() << std::endl;
+    std::cout << "Prenda cotizada: " << p->getCaracteristicas() << std::endl;
+    std::cout << "Precio Unitario: " << p->getPrecioUnitario() << std::endl;
+    std::cout << "Cantidad de prendas cotizadas: " << cant << std::endl;
+    std::cout << "Precio Final: " << precioFinal << std::endl;
+    linea();
     std::cout << "Presione cualquier tecla para continuar" << std::endl;
 }
 
 void Vista::cotizadorError(){
+    limpiarPantalla();
     encabezadoCotizacion();
+    linea();
     std::cout << "ERROR" << std::endl;
     linea();
     std::cout << "La cantidad a presupuestar supera al stock actual " << std::endl;
