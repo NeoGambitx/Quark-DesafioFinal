@@ -2,7 +2,8 @@
 C++
 
 Diagrama UML
-![UML](https://user-images.githubusercontent.com/53827471/232136641-bbab8117-554c-421d-ad57-9fd3842256b0.png)
+![UML](https://user-images.githubusercontent.com/53827471/232138214-3e7fdc48-3901-41c3-bac0-14a4dc4e478d.png)
+
 
 Programado en Visual Studio Code
 
