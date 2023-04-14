@@ -18,28 +18,20 @@
 #include "tienda.h"
 #include "vendedor.h"
 #include <string>
+#include <ctime>
+#include "historial.h"
 /* #include <vector> */
-
-/* struct historial
-        {   
-            int numIdentificacion;
-            std::string FechayHora;
-            int codigoV;
-            std::string prendaCotizada;
-            float precioUnitario;
-            int cantidadUnidades;
-            float precioFinal;
-        }; */
 
 class Modelo{
 
     private:
-        /* std::vector<historial *> hist; */
+        std::vector<historial> hist;
         
     public:
         Tienda tienda;
         Vendedor vendedor;
         Modelo(std::string nombreTienda, std::string direccion, std::string nombreV, std::string apellidoV, int codigo);
-        /* void guardarHistorial(historial* nuevoH);
-        std::vector<historial> getHistorial(); */
+        void guardarHistorial(Vendedor v, Camisa* c, int cant, float precioFinal, int id);
+        void guardarHistorial(Vendedor v, Pantalon* p, int cant, float precioFinal, int id);
+        std::vector<historial> getHistorial();
 };

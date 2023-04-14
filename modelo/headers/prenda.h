@@ -1,19 +1,20 @@
 #pragma once
+#include <string>
 
 class Prenda{
 
     protected:
-        char calidad; // 's' = Standard - 'p' Premium
+        std::string calidad; // Standard - Premium
         int stock;
         float precioUnitario;   
     public:
-        Prenda(char calidad, int stock, float precio);
+        Prenda(std::string calidad, int stock, float precio);
         int getStock();
         virtual float getPrecioUnitario() = 0; //Cada subClase tiene su propia implementación (Camisa, Pantalon)
         void setStock(int nuevoStock);
         void setPrecioUnitario(float precioBase);
-        void setCalidad(char c);
-        char getCalidad();
+        void setCalidad(std::string c);
+        std::string getCalidad();
 };
 
 //Fin Header Prenda.h

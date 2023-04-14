@@ -3,7 +3,8 @@
 //Prueba ▼ ▼ ▼ 
 #include "../modelo/headers/tienda.h"
 #include "../modelo/headers/vendedor.h"
-
+#include "../modelo/headers/historial.h"
+#include <vector>
 
 class Vista{
 
@@ -14,11 +15,12 @@ class Vista{
         void printTienda(std::string nombre, std::string direccion);
         void printVendedor(std::string nombre, std::string apellido, int codigo);
         int getInput();
+        void getAnyInput();
         int getCantidad();
         float getInputPrecio();
         bool validar(int x);
         void printError();
-        void mostrarHistorial();
+        void mostrarHistorial(std::vector<historial> his);
         void encabezadoCotizacion();
         void siNo();
         void linea();
@@ -30,6 +32,6 @@ class Vista{
         void cotizadorPaso3Calidad();
         void cotizadorPaso4Precio();
         void cotizadorPaso5Cantidad(int stock);
-        void cotizadorResultado();
+        void cotizadorResultado(Camisa* c, Vendedor v, int id, int cant, float precioFinal);
         void cotizadorError();
 }; 

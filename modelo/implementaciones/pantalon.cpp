@@ -1,6 +1,6 @@
 #include "../headers/pantalon.h"
 
-Pantalon::Pantalon(char calidad, int stock, float precio, bool _tipo): Prenda(calidad, stock, precio){
+Pantalon::Pantalon(std::string calidad, int stock, float precio, bool _tipo): Prenda(calidad, stock, precio){
                 this->tipo = _tipo;
         };
 
@@ -9,7 +9,7 @@ float Pantalon::getPrecioUnitario(){
             if(this->tipo == true){ 
                 precioFinal*=0.88; //-12% Chupin
             }
-            if(this->calidad == 'p'){
+            if(this->calidad == "Premium"){
                 precioFinal*=1.30;
             }
             return precioFinal;
@@ -21,5 +21,16 @@ void Pantalon::setTipo(bool b){
 
 bool Pantalon::getTipo(){
     return this->tipo;
+}
+
+std::string Pantalon::getCaracteristicas(){
+    std::string s;
+    if(this->getTipo()){
+         s = "Chupin";
+    }
+    else{
+        s = "Normal";
+    }
+    return ("Pantalon " + s + " " + this->getCalidad());
 }
 //Fin Implementacion Pantalon.cpp

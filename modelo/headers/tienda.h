@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 #include "prenda.h"
+#include "pantalon.h"
+#include "camisa.h"
 
 class Tienda{
 
@@ -16,6 +18,8 @@ class Tienda{
         std::string getDireccion();
         Pantalon* getPantalon(Pantalon* prendaABuscar);
         Camisa* getCamisa(Camisa* prendaABuscar);
-        void addPrendas(Pantalon* p);
-        bool compararPrendas(Prenda* p1, Prenda* p2);
+        void addPantalon(Pantalon* p);
+        void addCamisas(Camisa* c);
+        bool compararCamisas(Camisa* c1, Camisa* c2);
+        bool compararPantalones(Pantalon* p1, Pantalon* p2);
 };

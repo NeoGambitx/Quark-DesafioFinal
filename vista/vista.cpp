@@ -80,6 +80,15 @@ int Vista::getInput(){
     return x; //No usado, Para que no joda el compilador
 }
 
+void Vista::getAnyInput(){
+
+        int x;
+        std::cin >> x;
+        std::cin.clear();
+        std::cin.ignore( std::numeric_limits<int>::max(), '\n' );
+
+}
+
 int Vista::getCantidad(){
     int x;
     bool esValido;
@@ -124,12 +133,21 @@ float Vista::getInputPrecio(){
     return x; //No usado, Para que no apareza la advertencia del compilador
 }
 
-void Vista::mostrarHistorial(){
+void Vista::mostrarHistorial(std::vector<historial> his){
     std::cout << "COTIZADOR EXPRESS - HISTORIAL DE COTIZACIONES" << std::endl;
-    print3msg();
 
-    //Historial aqui (for o bucle)
-    print3msg();
+    for(int x=0; his.size(); x++){
+        std::cout << "Numero de identificacion: " << his[x].numIdentificacion << std::endl;
+        std::cout << "Fecha y hora de la cotizacion: "<< his[x].FechayHora << std::endl;
+        std::cout << "Codigo del Vendedor: " << his[x].codigoV << std::endl;
+        std::cout << "Prenda cotizada: " << his[x].prendaCotizada << std::endl;
+        std::cout << "Precio Unitario: " << his[x].precioUnitario << std::endl;
+        std::cout << "Cantidad de prendas cotizadas: " << his[x].cantidadUnidades << std::endl;
+        std::cout << "Precio Final: " << his[x].precioFinal << std::endl;
+        std::cout << "" << std::endl;
+        std::cout << "" << std::endl;
+    }
+    std::cout << "Presione cualquier tecla para continuar" << std::endl;
 }
 
 void Vista::siNo(){
@@ -207,10 +225,24 @@ void Vista::cotizadorPaso5Cantidad(int stock){
     std::cout << "PASO 5: Ingrese la cantidad de unidades a cotizar:" << std::endl;
 }
 
-void Vista::cotizadorResultado(){
-
+void Vista::cotizadorResultado(Camisa* c, Vendedor v, int id, int cant, float precioFinal){
+    encabezadoCotizacion();
+    std::cout << "Numero de identificacion: " << id << std::endl;
+    std::cout << "Fecha y hora de la cotizacion: " << std::endl;
+    std::cout << "Codigo del Vendedor: " << v.getCodigoVendedor() << std::endl;
+    std::cout << "Prenda cotizada: Camisa con cuello " << c->getCuello() << " de calidad " << c->getCalidad() << std::endl;
+    std::cout << "Precio Unitario: " << c->getPrecioUnitario() << std::endl;
+    std::cout << "Cantidad de prendas cotizadas: " << cant << std::endl;
+    std::cout << "Precio Final: " << precioFinal << std::endl;
+    std::cout << "Presione cualquier tecla para continuar" << std::endl;
 }
 
 void Vista::cotizadorError(){
-    
+    encabezadoCotizacion();
+    std::cout << "ERROR" << std::endl;
+    linea();
+    std::cout << "La cantidad a presupuestar supera al stock actual " << std::endl;
+    std::cout << "Vuelva a intertarlo" << std::endl;
+    linea();
+    std::cout << "Presione cualquier tecla para continuar" << std::endl;
 }
