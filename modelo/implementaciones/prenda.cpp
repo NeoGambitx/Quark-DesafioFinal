@@ -13,3 +13,15 @@ int Prenda::getStock(){
 void Prenda::setStock(int nuevoStock){
     this->stock = nuevoStock;
 }
+
+void Prenda::setPrecioUnitario(float precioBase){
+    this->precioUnitario = precioBase;
+}
+
+void Prenda::setCalidad(char c){
+    this->calidad = c;
+}
+
+char Prenda::getCalidad(){
+    return this->calidad;
+}

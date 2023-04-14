@@ -80,6 +80,28 @@ int Vista::getInput(){
     return x; //No usado, Para que no joda el compilador
 }
 
+int Vista::getCantidad(){
+    int x;
+    bool esValido;
+    do{
+
+        std::cin >> x;
+        if(x>0){
+            return x;
+        }
+        else{
+            esValido = false;
+            printError();
+        }
+
+        std::cin.clear();
+        std::cin.ignore( std::numeric_limits<int>::max(), '\n' );
+
+    }while(!esValido);
+    
+    return x; //No usado, Para que no apareza la advertencia del compilador
+}
+
 float Vista::getInputPrecio(){
     float x;
     bool esValido;

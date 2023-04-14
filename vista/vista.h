@@ -14,6 +14,7 @@ class Vista{
         void printTienda(std::string nombre, std::string direccion);
         void printVendedor(std::string nombre, std::string apellido, int codigo);
         int getInput();
+        int getCantidad();
         float getInputPrecio();
         bool validar(int x);
         void printError();

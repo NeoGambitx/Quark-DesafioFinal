@@ -18,3 +18,19 @@ float Camisa::getPrecioUnitario(){
     }
     return precioFinal;
 }
+
+void Camisa::setTipo(char c){
+    this->tipo = c;
+}
+
+void Camisa::setCuello(char c){
+    this->cuello = c;
+}
+
+char Camisa::getTipo(){
+    return this->tipo;
+}
+
+char Camisa::getCuello(){
+    return this->cuello;
+}

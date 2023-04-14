@@ -8,4 +8,6 @@ class Pantalon: public Prenda{
     public:
         Pantalon(char calidad, int stock, float precio, bool _tipo);
         float getPrecioUnitario();
+        void setTipo(bool b);
+        bool getTipo();
 };

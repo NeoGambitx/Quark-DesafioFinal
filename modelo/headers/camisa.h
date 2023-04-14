@@ -8,4 +8,8 @@ class Camisa: public Prenda{
     public:
         Camisa(char calidad, int stock, float precio, char tipo, char cuello);
         float getPrecioUnitario(); //Cada subClase tiene su propia implementación (Camisa, Pantalon)
+        void setTipo(char c);
+        void setCuello(char c);
+        char getTipo();
+        char getCuello();
 };

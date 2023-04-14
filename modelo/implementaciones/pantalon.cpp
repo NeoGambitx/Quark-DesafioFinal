@@ -14,4 +14,12 @@ float Pantalon::getPrecioUnitario(){
             }
             return precioFinal;
 };
+
+void Pantalon::setTipo(bool b){
+    this->tipo = b;
+}
+
+bool Pantalon::getTipo(){
+    return this->tipo;
+}
 //Fin Implementacion Pantalon.cpp

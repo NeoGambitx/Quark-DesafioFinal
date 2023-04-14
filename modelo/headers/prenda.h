@@ -3,7 +3,7 @@
 class Prenda{
 
     protected:
-        char calidad; // 'n' = Normal - 'p' Premium
+        char calidad; // 's' = Standard - 'p' Premium
         int stock;
         float precioUnitario;   
     public:
@@ -11,7 +11,9 @@ class Prenda{
         int getStock();
         virtual float getPrecioUnitario() = 0; //Cada subClase tiene su propia implementación (Camisa, Pantalon)
         void setStock(int nuevoStock);
-        // setPrecio y setCalidad no es necesario basado en el enunciado
+        void setPrecioUnitario(float precioBase);
+        void setCalidad(char c);
+        char getCalidad();
 };
 
 //Fin Header Prenda.h

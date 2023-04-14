@@ -18,16 +18,25 @@ class Presentador{
 #include "../modelo/headers/modelo.h"
 #include "../modelo/headers/vendedor.h"
 
+float cotizar(Prenda* p, int cant){
+    return (p->getPrecioUnitario() * cant);
+}
+
+
 void iniciarPrograma(Modelo* model, Vista* view){
+
+    //Inicializamos las prendas para ir modificando en el flujo del programa y luego cotizar
+    Pantalon* pantalon = new Pantalon('c', 1, 1, false); //Datos random despues se modifica
     
+
+    //Limpiamos pantalla
     view->limpiarPantalla();
     int opcion;
-/*     view->printMenuPrincipal(model->tienda.getNombre(), model->tienda.getDireccion(), model->vendedor.getNombre(), model->vendedor.getApellido(), model->vendedor.getCodigoVendedor());
- */
 
     view->printMenuPrincipal(&model->tienda, &model->vendedor);
     opcion = view->getInput();
 
+    //Main Switch - 1) Historial  2) Cotizar  3) SALIR
     switch (opcion)
     {
     case 1: //CASO 1 - HISTORIAL - 
@@ -36,7 +45,9 @@ void iniciarPrograma(Modelo* model, Vista* view){
     case 2: //CASO 2 - COTIZACION -
         view->cotizadorPaso1();
         
+        //Variable auxiliar - se va comparando para llevar el flujo del programa
         int subOpcion;
+        float precio;
         subOpcion = view->getInput();
 
         //Siempre la opcion de volver al menu principal
@@ -47,21 +58,24 @@ void iniciarPrograma(Modelo* model, Vista* view){
         //Camisa y sus subopciones  ▼ ▼ ▼ ▼ 
         else if(subOpcion == 1){
 
+            Camisa* camisa = new Camisa('c', 1, 1, 'c', 'm'); 
+            
             //PASO 2A CAMISA
             view->cotizadorPaso2Camisa();
             subOpcion = view->getInput();
 
             if(subOpcion == 3){
+                delete camisa;
                 iniciarPrograma(model, view);
                 return;
             }
-            else{ // Si = es manga corta
+            else{ 
                 
-                if(subOpcion == 1){
-
+                if(subOpcion == 1){ // Si = es manga corta
+                    camisa->setTipo('c');
                 }
-                else if(subOpcion == 2){
-
+                else if(subOpcion == 2){ // NO es manga corta
+                    camisa->setTipo('l');
                 }
 
                 view->cotizadorPaso2bCamisa();
@@ -70,20 +84,66 @@ void iniciarPrograma(Modelo* model, Vista* view){
                 //PASO 2B CAMISA
 
                 if(subOpcion == 3){
+                    delete camisa;
                     iniciarPrograma(model, view);
                     return;
                 }
                 else{
                     if(subOpcion == 1){ // SI =  es cuello MAO
-
+                        camisa->setCuello('m');
                     } 
                     else if(subOpcion == 2){
+                        camisa->setCuello('c');
+                    }
+
+                    //PASO 3 - CALIDAD CAMISA
+                    view->cotizadorPaso3Calidad();
+                    subOpcion = view->getInput();
+
+                    if(subOpcion == 3){
+                        delete camisa;
+                        iniciarPrograma(model, view);
+                    return;
+                    }
+                    else{
+                        if(subOpcion == 1){ //Standard
+                            camisa->setCalidad('s');
+                        } 
+                        else if(subOpcion == 2){ //Premium
+                            camisa->setCalidad('p');
+                        }
+
+                        //PASO 4 - PRECIO CAMISA
+                        view->cotizadorPaso4Precio();
+                        precio = view->getInputPrecio();
+                        
+                        //Por el enunciado se puede volver al menu principal 
+                        //Incluso en esta pantalla
+                        if(precio == 3){
+                            delete camisa;
+                            iniciarPrograma(model, view);
+                            return;
+                        }
+                        else{
+                            camisa->setPrecioUnitario(precio);
+
+                            //PASO 5 - CANTIDAD
+                            // INT 5 prueba
+                            //BUSCAR PRENDA EN LA TIENDA, para ver el STOCK actual
+                            view->cotizadorPaso5Cantidad(5);
+                            subOpcion = view->getCantidad();
+                            //COTIZAR AQUI ▼  ▼  ▼  ▼  ▼  ▼
+                        
+                            //FIN DEL PROGRAMA
+
+                            //TECLA RANDOM Y VOLVER A EMPEZAR - GUARDAR HISTORIAL
+
+                        }
+                        
+                        
 
                     }
 
-                    //PASO 3 - CALIDAD
-                    view->cotizadorPaso3Calidad();
-                    subOpcion = view->getInput();
                 }
 
             }
@@ -92,6 +152,50 @@ void iniciarPrograma(Modelo* model, Vista* view){
         //Pantalon y su subopcion ▼ ▼ ▼ ▼ 
         else if(subOpcion == 2){
 
+            //PASO 2 - PANTALON
+            view->cotizadorPaso2Pantalon();
+            view->getInput();
+            if(subOpcion == 3){
+                    iniciarPrograma(model, view);
+                    return;
+            }
+            else{
+                if(subOpcion == 1){ //SI - es chupín
+
+                } 
+                else if(subOpcion == 2){ //NO es chupin
+
+                }
+
+                // PASO 3 - CALIDAD PANTALON
+                view->cotizadorPaso3Calidad();
+                view->getInput();
+
+                if(subOpcion == 3){
+                    iniciarPrograma(model, view);
+                    return;
+                }
+                else{
+                    if(subOpcion == 1){ //1) Standard
+
+                    } 
+                    else if(subOpcion == 2){ //2) Premium
+
+                    }
+
+                    // PASO 4 - PANTALON PRECIO
+                    view->cotizadorPaso4Precio();
+                    view->getInputPrecio(); 
+
+                    //PASO 5 - PANTALON - CANTIDAD
+                    view->cotizadorPaso5Cantidad(5);
+                    view->getCantidad();
+
+                    //COTIZAR + GUARDAR HISTORIAL 
+                    //CUALQUIER TECLA PARA CONTINUAR
+                }
+            
+            }
         }
 
         break;
@@ -100,6 +204,9 @@ void iniciarPrograma(Modelo* model, Vista* view){
     default:
         break;
     }
+
+    //Liberamos espacio de memoria
+    delete pantalon;
 }
 
 int main(){
